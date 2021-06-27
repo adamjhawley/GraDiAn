@@ -43,3 +43,17 @@ class SDC(Counter):
             sdc.update([token.dep_ for token in doc]) 
         return sdc
 
+    @classmethod
+    def from_string(cls, s: str):
+        # Relies on en_core_web_trf SpaCy model
+        try:
+            nlp = spacy.load("en_core_web_trf", exclude=['tokenizer', 'tagger',
+                                                         'ner', 'lemmatizer',
+                                                         'textcat'])
+        except OSError as e:
+            raise OSError('Try installing the model with "python -m spacy \
+                          download en_core_web_trf', e)
+        sdc = SDC()
+        doc = nlp(s)
+        sdc.update([token.dep_ for token in doc]) 
+        return sdc

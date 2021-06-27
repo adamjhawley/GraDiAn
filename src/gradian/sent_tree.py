@@ -4,6 +4,8 @@ from typing import List
 from nltk.tree import Tree
 from spacy.tokens import Token
 
+from gradian.utils import load_spacy_en_trf
+
 
 class SentTree():
     def __init__(self, token: str, pos: str, dependency: str, sentiment: float, children: List = []):
@@ -32,6 +34,15 @@ class SentTree():
                                           t.children])
             else:
                 return SentTree(t.text, t.pos_, t.dep_, t.sentiment)
+
+    @classmethod
+    def from_string(cls, s: str, use_spacy_text_blob: bool = False):
+        nlp = load_spacy_en_trf()
+        doc = nlp(s)
+        trees = list()
+        for sent in doc.sents:
+            trees.append(cls.from_spacy_token(sent.root, use_spacy_text_blob))
+        return trees
 
     def _get_attr(self, attr: str):
         if hasattr(self, attr):

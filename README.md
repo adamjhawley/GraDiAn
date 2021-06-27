@@ -7,7 +7,7 @@ At the moment, GraDiAn does this by providing two abstract data types: the Synta
 `SentTree` represents a given sentence in a tree structure.
 Importantly, the `SentTree` can be used to analyse the parse-tree with regards to different properties of the text including part-of-speech tags, syntactic dependencies and (with the help of [spaCyTextBlob](https://spacy.io/universe/project/spacy-textblob)) sentiment.
 
-## Syntactic Dependency Counter (SDC)
+## Syntactic Dependency Counter (SDC)
 An `SDC` does what it says on the tin.
 Inheriting from python's `collections.Counter` class, it maintains a count of syntactic dependency labels.
 

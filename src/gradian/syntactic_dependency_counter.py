@@ -3,6 +3,8 @@ from typing import List
 
 import spacy
 
+from gradian.utils import load_spacy_en_trf
+
 
 class SDC(Counter):
     def __init__(self, dependencies=None, **kwargs):
@@ -30,14 +32,8 @@ class SDC(Counter):
 
     @classmethod
     def from_string_arr(cls, texts: List[str]):
-        # Relies on en_core_web_trf SpaCy model
-        try:
-            nlp = spacy.load("en_core_web_trf", exclude=['tokenizer', 'tagger',
-                                                         'ner', 'lemmatizer',
-                                                         'textcat'])
-        except OSError as e:
-            raise OSError('Try installing the model with "python -m spacy \
-                          download en_core_web_trf', e)
+        nlp = load_spacy_en_trf(excludes=['tokenizer', 'tagger', 'ner',
+                                          'lemmatizer', 'textcat'])
         sdc = SDC()
         for doc in nlp.pipe(texts):
             sdc.update([token.dep_ for token in doc]) 
@@ -45,14 +41,8 @@ class SDC(Counter):
 
     @classmethod
     def from_string(cls, s: str):
-        # Relies on en_core_web_trf SpaCy model
-        try:
-            nlp = spacy.load("en_core_web_trf", exclude=['tokenizer', 'tagger',
-                                                         'ner', 'lemmatizer',
-                                                         'textcat'])
-        except OSError as e:
-            raise OSError('Try installing the model with "python -m spacy \
-                          download en_core_web_trf', e)
+        nlp = load_spacy_en_trf(excludes=['tokenizer', 'tagger', 'ner',
+                                          'lemmatizer', 'textcat'])
         sdc = SDC()
         doc = nlp(s)
         sdc.update([token.dep_ for token in doc]) 

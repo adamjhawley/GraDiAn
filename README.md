@@ -11,6 +11,12 @@ Importantly, the `SentTree` can be used to analyse the parse-tree with regards t
 An `SDC` does what it says on the tin.
 Inheriting from python's `collections.Counter` class, it maintains a count of syntactic dependency labels.
 
+## Installation
+
+Available on [pypi](https://pypi.org/project/GraDiAn/0.0.0.1/).
+Install with pip:
+`pip install GraDiAn`
+
 ## Usage
 
 ### Syntactic Dependency Counter

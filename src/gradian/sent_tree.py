@@ -4,7 +4,7 @@ from typing import List
 from nltk.tree import Tree
 from spacy.tokens import Token
 
-from gradian.utils import load_spacy_en_trf
+from gradian.utils import load_spacy_model
 
 
 class SentTree():
@@ -37,7 +37,7 @@ class SentTree():
 
     @classmethod
     def from_string(cls, s: str, use_spacy_text_blob: bool = False):
-        nlp = load_spacy_en_trf()
+        nlp = load_spacy_model()
         doc = nlp(s)
         trees = list()
         for sent in doc.sents:

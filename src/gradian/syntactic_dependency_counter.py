@@ -1,9 +1,7 @@
 from collections import Counter
 from typing import List
 
-import spacy
-
-from gradian.utils import load_spacy_en_trf
+from gradian.utils import load_spacy_model
 
 
 class SDC(Counter):
@@ -32,7 +30,7 @@ class SDC(Counter):
 
     @classmethod
     def from_string_arr(cls, texts: List[str]):
-        nlp = load_spacy_en_trf(excludes=['tokenizer', 'tagger', 'ner',
+        nlp = load_spacy_model(excludes=['tokenizer', 'tagger', 'ner',
                                           'lemmatizer', 'textcat'])
         sdc = SDC()
         for doc in nlp.pipe(texts):
@@ -41,7 +39,7 @@ class SDC(Counter):
 
     @classmethod
     def from_string(cls, s: str):
-        nlp = load_spacy_en_trf(excludes=['tokenizer', 'tagger', 'ner',
+        nlp = load_spacy_model(excludes=['tokenizer', 'tagger', 'ner',
                                           'lemmatizer', 'textcat'])
         sdc = SDC()
         doc = nlp(s)

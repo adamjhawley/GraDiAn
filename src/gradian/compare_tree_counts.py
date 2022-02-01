@@ -46,13 +46,13 @@ def compare_distributions(d1, d2):
     total_share_difference = sum([abs(v['prop_diff']) for v in
                                   sorted_results.values()])
 
-    #chisq, p = chisquare(observed_frequencies, expected_frequencies,
-                         #ddof=len(expected_frequencies)-1)
+    chisq, p = chisquare(observed_frequencies, expected_frequencies,
+                         ddof=len(expected_frequencies)-1)
     return {'results': {**sorted_results}, 
             'missing_proportion': missing_count/total_d1,
             'test_length':len(d1), 'training_length':len(d2), 
-            'total_difference': total_share_difference}
-            #'chisq': chisq, 'p': p}
+            'total_difference': total_share_difference,
+            'chisq': chisq, 'p': p}
 
 
 if __name__ == "__main__":

@@ -6,7 +6,6 @@ from typing import List
 import spacy
 from pandas import read_csv
 from pandas.core.frame import DataFrame
-from spacytextblob.spacytextblob import SpacyTextBlob
 from tqdm import tqdm
 
 from sent_tree import SentTree
